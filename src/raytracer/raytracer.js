@@ -90,10 +90,16 @@ export default class Raytracer {
     // Tell WebGL to use our program when drawing
     this.shader.use()
 
+    // Send light positions
+    this.shader.setUniform2fv('lightPositions', new Float32Array([
+      0.8, 0.8,
+      0, 0,
+      -0.8, -0.8
+    ]))
+
     // Set the shader uniforms
     this.shader.setUniformMatrix4fv('uProjectionMatrix', projectionMatrix)
     this.shader.setUniformMatrix4fv('uModelViewMatrix', modelViewMatrix)
-
     {
       const offset = 0
       const vertexCount = 4

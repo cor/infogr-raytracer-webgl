@@ -4,11 +4,14 @@ precision mediump float;
 
 varying mediump vec2 screenPosition;
 
+#define LIGHT_COUNT 3
+uniform vec2 lightPositions[LIGHT_COUNT];
+
 struct Camera
 {
     vec2 position;
     float zoom;
-} camera = Camera (vec2(0.0, 0.0), 1.0);
+} camera = Camera (vec2(0.0, 0.0), 0.5);
 
 struct Light
 {
@@ -27,12 +30,16 @@ vec3 Trace(vec2 worldPoint)
 {
     vec3 colorAtPixel = vec3(0.0, 0.0, 0.0);
 
-    vec2 vectorToLight = light.position - worldPoint;
+    for (int i = 0; i < LIGHT_COUNT; i++) {
 
-    float distanceToLight = length(vectorToLight);
-    float intensity = 1.0 / (4.0 * M_PI * distanceToLight);
+        vec2 vectorToLight = lightPositions[i] - worldPoint;
 
-    colorAtPixel += light.color * intensity;
+        float distanceToLight = length(vectorToLight);
+        float intensity = 1.0 / (4.0 * M_PI * distanceToLight);
+
+        colorAtPixel += light.color * intensity;
+    }
+
 
     return colorAtPixel;
 }
