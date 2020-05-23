@@ -1,5 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>INFOGR Raytracer WebGL</h1>
+    <p>This is a port of the <a href="https://github.com/cor/infogr-raytracer">INFOGR Raytracer</a> project to WebGL</p>
   </div>
 </template>
