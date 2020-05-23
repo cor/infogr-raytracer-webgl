@@ -1,10 +1,19 @@
 export default class Shader {
   gl
-  id
+  program
+  attribLocations
+  uniformLocations
 
   constructor (gl, vsSource, fsSource) {
     this.gl = gl
-    this.id = this.initShaderProgram(gl, vsSource, fsSource)
+    this.program = this.initShaderProgram(gl, vsSource, fsSource)
+    this.attribLocations = {
+      vertexPosition: gl.getAttribLocation(this.program, 'aVertexPosition')
+    }
+    this.uniformLocations = {
+      projectionMatrix: gl.getUniformLocation(this.program, 'uProjectionMatrix'),
+      modelViewMatrix: gl.getUniformLocation(this.program, 'uModelViewMatrix')
+    }
   }
 
   //
