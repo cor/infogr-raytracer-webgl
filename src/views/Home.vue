@@ -22,7 +22,7 @@ export default {
 
     // Create raytracer
     const raytracer = new Raytracer(gl)
-    raytracer.printContext()
+    console.log(raytracer.gl)
   }
 }
 </script>

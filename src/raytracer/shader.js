@@ -1,44 +1,54 @@
-//
-// Initialize a shader program, so WebGL knows how to draw our data
-//
-export default function initShaderProgram (gl, vsSource, fsSource) {
-  const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource)
-  const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource)
+export default class Shader {
+  gl
+  id
 
-  // Create the shader program
-  const shaderProgram = gl.createProgram()
-  gl.attachShader(shaderProgram, vertexShader)
-  gl.attachShader(shaderProgram, fragmentShader)
-  gl.linkProgram(shaderProgram)
-
-  // If creating the shader program failed, alert
-  if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-    alert(`Unable to initialize the shader program: ${gl.getProgramInfoLog(shaderProgram)}`)
-    return null
+  constructor (gl, vsSource, fsSource) {
+    this.gl = gl
+    this.id = this.initShaderProgram(gl, vsSource, fsSource)
   }
 
-  return shaderProgram
-}
+  //
+  // Initialize a shader program, so WebGL knows how to draw our data
+  //
+  initShaderProgram (gl, vsSource, fsSource) {
+    const vertexShader = this.loadShader(gl, gl.VERTEX_SHADER, vsSource)
+    const fragmentShader = this.loadShader(gl, gl.FRAGMENT_SHADER, fsSource)
 
-//
-// creates a shader of the given type, uploads the source and
-// compiles it.
-//
-function loadShader (gl, type, source) {
-  const shader = gl.createShader(type)
+    // Create the shader program
+    const shaderProgram = gl.createProgram()
+    gl.attachShader(shaderProgram, vertexShader)
+    gl.attachShader(shaderProgram, fragmentShader)
+    gl.linkProgram(shaderProgram)
 
-  // Send the source to the shader object
-  gl.shaderSource(shader, source)
+    // If creating the shader program failed, alert
+    if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+      alert(`Unable to initialize the shader program: ${gl.getProgramInfoLog(shaderProgram)}`)
+      return null
+    }
 
-  // Compile the shader program
-  gl.compileShader(shader)
-
-  // See if it compiled successfully
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    console.error(`An error occurred compiling the shaders:\n${gl.getShaderInfoLog(shader)}`)
-    gl.deleteShader(shader)
-    return null
+    return shaderProgram
   }
 
-  return shader
+  //
+  // creates a shader of the given type, uploads the source and
+  // compiles it.
+  //
+  loadShader (gl, type, source) {
+    const shader = gl.createShader(type)
+
+    // Send the source to the shader object
+    gl.shaderSource(shader, source)
+
+    // Compile the shader program
+    gl.compileShader(shader)
+
+    // See if it compiled successfully
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      console.error(`An error occurred compiling the shaders:\n${gl.getShaderInfoLog(shader)}`)
+      gl.deleteShader(shader)
+      return null
+    }
+
+    return shader
+  }
 }
