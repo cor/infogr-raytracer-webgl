@@ -1,19 +1,10 @@
 export default class Shader {
   gl
   program
-  attribLocations
-  uniformLocations
 
   constructor (gl, vsSource, fsSource) {
     this.gl = gl
     this.program = this.initShaderProgram(gl, vsSource, fsSource)
-    this.attribLocations = {
-      vertexPosition: gl.getAttribLocation(this.program, 'aVertexPosition')
-    }
-    this.uniformLocations = {
-      projectionMatrix: gl.getUniformLocation(this.program, 'uProjectionMatrix'),
-      modelViewMatrix: gl.getUniformLocation(this.program, 'uModelViewMatrix')
-    }
   }
 
   //
@@ -59,5 +50,25 @@ export default class Shader {
     }
 
     return shader
+  }
+
+  use () {
+    this.gl.useProgram(this.program)
+  }
+
+  setUniformMatrix4fv (name, value) {
+    // TODO: Cache uniform locations
+    const location = this.getUniformLocation(name)
+    this.gl.uniformMatrix4fv(location, false, value)
+  }
+
+  getUniformLocation (name) {
+    // TODO: Cache uniform locations
+    return this.gl.getUniformLocation(this.program, name)
+  }
+
+  getAttribLocation (name) {
+    // TODO: Cache attrib locations
+    return this.gl.getAttribLocation(this.program, name)
   }
 }
