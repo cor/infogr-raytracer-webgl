@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>INFOGR Index WebGL</h1>
+    <h1>INFOGR Raytracer WebGL</h1>
     <canvas id="glCanvas" width="600" height="600"></canvas>
   </div>
 </template>
@@ -26,3 +26,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .home {
+    text-align: center;
+  }
+</style>
