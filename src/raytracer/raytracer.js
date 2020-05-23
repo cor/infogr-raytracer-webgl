@@ -13,8 +13,6 @@ export default class Raytracer {
     this.gl = gl
     this.shader = new Shader(gl, vsSource, fsSource)
     this.buffers = this.initBuffers()
-
-    this.drawScene(this.gl)
   }
 
   initBuffers () {
@@ -48,7 +46,7 @@ export default class Raytracer {
     }
   }
 
-  drawScene () {
+  drawScene (scene) {
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0) // Clear to black, fully opaque
     this.gl.clear(this.gl.COLOR_BUFFER_BIT)
     this.gl.clearDepth(1.0) // Clear everything
@@ -90,12 +88,7 @@ export default class Raytracer {
     // Tell WebGL to use our program when drawing
     this.shader.use()
 
-    // Send light positions
-    this.shader.setUniform2fv('lightPositions', new Float32Array([
-      0.8, 0.8,
-      0, 0,
-      -0.8, -0.8
-    ]))
+    this.setLightUniforms(scene)
 
     // Set the shader uniforms
     this.shader.setUniformMatrix4fv('uProjectionMatrix', projectionMatrix)
@@ -104,6 +97,13 @@ export default class Raytracer {
       const offset = 0
       const vertexCount = 4
       this.gl.drawArrays(this.gl.TRIANGLE_STRIP, offset, vertexCount)
+    }
+  }
+
+  setLightUniforms (scene) {
+    for (const [i, v] of scene.lights.entries()) {
+      this.shader.setUniform2fv(`lights[${i}].position`, new Float32Array(v.position))
+      this.shader.setUniform3fv(`lights[${i}].color`, new Float32Array(v.color))
     }
   }
 }
