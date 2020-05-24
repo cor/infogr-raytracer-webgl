@@ -1,20 +1,15 @@
 export default class Scene {
   lights = [
     {
-      position: [0.8, 0.8],
-      color: [1, 1, 1],
-      velocity: [0, 0]
-    },
-    {
-      position: [0, 0],
-      color: [1, 1, 1],
-      velocity: [0, 0]
-    },
-    {
-      position: [-0.8, -0.8],
-      color: [1, 1, 1],
-      velocity: [1, 0]
+      position: [-5, 5.6],
+      color: [1, 0, 2.4],
+      velocity: [1, -1]
     }
+    // {
+    //   position: [-2, -2],
+    //   color: [0.5, 0.3, 0.3],
+    //   velocity: [0, 0]
+    // }
   ]
 
   circles = [
@@ -25,6 +20,11 @@ export default class Scene {
     },
     {
       position: [0.8, -0.8],
+      radius: 0.1,
+      velocity: [0, 0]
+    },
+    {
+      position: [0, 0],
       radius: 0.1,
       velocity: [0, 0]
     }
@@ -44,7 +44,7 @@ export default class Scene {
 
   addLight () {
     this.lights.push({
-      position: [0, 0],
+      position: [0.5, 0.5],
       color: [1, 1, 1],
       velocity: [0, 0]
     })
@@ -52,7 +52,7 @@ export default class Scene {
 
   addCircle () {
     this.circles.push({
-      position: [0, 0],
+      position: [0, -0.5],
       radius: 0.1,
       velocity: [0, 0]
     })

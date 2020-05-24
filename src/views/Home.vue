@@ -103,8 +103,6 @@ export default {
   watch: {
     scene: {
       handler: function () {
-        // console.log('Redrawing scene')
-        // this.raytracer.drawScene(this.scene)
         console.log('booh')
       },
       deep: true
@@ -123,6 +121,20 @@ export default {
     width: auto;
     display: flex;
     flex-direction: column;
+
+    button {
+      display: inline-block;
+      border: none;
+      padding: 1rem 2rem;
+      margin: 0;
+      text-decoration: none;
+      background: #333;
+      color: #ffffff;
+      font-family: sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      text-align: center;
+    }
   }
   .gameObject {
     display: inline-block;
