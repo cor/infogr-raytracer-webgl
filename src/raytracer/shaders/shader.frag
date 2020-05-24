@@ -29,10 +29,10 @@ struct Circle
     float radius;
 };
 
-#define LIGHT_COUNT 3
+#define LIGHT_COUNT 42//$LIGHT_COUNT$//
 uniform Light lights[LIGHT_COUNT];
 
-#define CIRCLE_COUNT 2
+#define CIRCLE_COUNT 42//$CIRCLE_COUNT$//
 uniform Circle circles[CIRCLE_COUNT];
 
 

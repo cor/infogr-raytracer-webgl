@@ -2,8 +2,13 @@ export default class Shader {
   gl
   program
 
-  constructor (gl, vsSource, fsSource) {
+  constructor (gl, vsSource, fsSource, sourceVars) {
     this.gl = gl
+
+    // preprocess sources
+    vsSource = this.preprocessSource(vsSource, sourceVars)
+    fsSource = this.preprocessSource(fsSource, sourceVars)
+
     this.program = this.initShaderProgram(gl, vsSource, fsSource)
   }
 
@@ -27,6 +32,16 @@ export default class Shader {
     }
 
     return shaderProgram
+  }
+
+  //
+  // preprocesses our shader source files
+  // it replaces variables in the format 42//$VARIABLE_NAME$// with the VARIABLE_NAME
+  // item from the sourceVars object
+  //
+  preprocessSource (source, sourceVars) {
+    const sourceVarPattern = /42\/\/\$(.*)\$\/\//g
+    return source.replace(sourceVarPattern, (_, varName) => sourceVars[varName])
   }
 
   //
@@ -80,5 +95,9 @@ export default class Shader {
   getAttribLocation (name) {
     // TODO: Cache attrib locations
     return this.gl.getAttribLocation(this.program, name)
+  }
+
+  delete () {
+    this.gl.deleteProgram(this.program)
   }
 }

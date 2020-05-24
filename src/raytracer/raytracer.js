@@ -9,10 +9,15 @@ export default class Raytracer {
   shader
   buffers
 
-  constructor (gl) {
+  constructor (gl, shaderSourceVars) {
     this.gl = gl
-    this.shader = new Shader(gl, vsSource, fsSource)
+    this.shader = new Shader(gl, vsSource, fsSource, shaderSourceVars)
     this.buffers = this.initBuffers()
+  }
+
+  recompileShader (shaderSourceVars) {
+    this.shader.delete()
+    this.shader = new Shader(this.gl, vsSource, fsSource, shaderSourceVars)
   }
 
   initBuffers () {
