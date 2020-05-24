@@ -18,6 +18,10 @@ export default class Scene {
     {
       position: [-0.8, 0.8],
       radius: 0.1
+    },
+    {
+      position: [0.8, -0.8],
+      radius: 0.1
     }
   ]
 }

@@ -32,7 +32,7 @@ struct Circle
 #define LIGHT_COUNT 3
 uniform Light lights[LIGHT_COUNT];
 
-#define CIRCLE_COUNT 1
+#define CIRCLE_COUNT 2
 uniform Circle circles[CIRCLE_COUNT];
 
 
