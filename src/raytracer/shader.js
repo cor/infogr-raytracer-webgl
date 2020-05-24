@@ -57,9 +57,15 @@ export default class Shader {
   }
 
   setUniformMatrix4fv (name, value) {
-    // TODO: Cache uniform locations
-    const location = this.getUniformLocation(name)
-    this.gl.uniformMatrix4fv(location, false, value)
+    this.gl.uniformMatrix4fv(this.getUniformLocation(name), false, value)
+  }
+
+  setUniform2fv (name, value) {
+    this.gl.uniform2fv(this.getUniformLocation(name), value)
+  }
+
+  setUniform3fv (name, value) {
+    this.gl.uniform3fv(this.getUniformLocation(name), value)
   }
 
   getUniformLocation (name) {
