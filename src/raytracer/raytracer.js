@@ -15,6 +15,11 @@ export default class Raytracer {
     this.buffers = this.initBuffers()
   }
 
+  recompileShader (shaderSourceVars) {
+    this.shader.delete()
+    this.shader = new Shader(this.gl, vsSource, fsSource, shaderSourceVars)
+  }
+
   initBuffers () {
     // Create a buffer for the square's positions.
 

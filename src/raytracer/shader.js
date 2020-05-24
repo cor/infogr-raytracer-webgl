@@ -96,4 +96,8 @@ export default class Shader {
     // TODO: Cache attrib locations
     return this.gl.getAttribLocation(this.program, name)
   }
+
+  delete () {
+    this.gl.deleteProgram(this.program)
+  }
 }

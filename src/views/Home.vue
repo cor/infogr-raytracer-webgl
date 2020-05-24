@@ -17,6 +17,8 @@
           B: <input type="number" step="0.01" v-model="light.color[2]">
         </div>
       </div>
+
+      <button @click="addLight()">Add Light</button>
     </div>
     <div class="gameObject-container">
       <div class="gameObject" v-for="(circle, index) in scene.circles" :key="index">
@@ -60,10 +62,17 @@ export default {
     this.raytracer = new Raytracer(gl, this.scene.shaderSourceVars())
     this.raytracer.drawScene(this.scene)
   },
+  methods: {
+    addLight () {
+      console.log('Recompiling shader')
+      this.scene.addLight()
+      this.raytracer.recompileShader(this.scene.shaderSourceVars())
+    }
+  },
   watch: {
     scene: {
       handler: function () {
-        console.log('redrawing scene')
+        console.log('Redrawing scene')
         this.raytracer.drawScene(this.scene)
       },
       deep: true

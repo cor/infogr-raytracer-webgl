@@ -25,6 +25,13 @@ export default class Scene {
     }
   ]
 
+  addLight () {
+    this.lights.push({
+      position: [0, 0],
+      color: [1, 1, 1]
+    })
+  }
+
   shaderSourceVars () {
     return {
       LIGHT_COUNT: this.lights.length,
