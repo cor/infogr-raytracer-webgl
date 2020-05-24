@@ -13,4 +13,11 @@ export default class Scene {
       color: [1, 1, 1]
     }
   ]
+
+  circles = [
+    {
+      position: [-0.8, 0.8],
+      radius: 0.1
+    }
+  ]
 }
