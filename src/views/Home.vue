@@ -7,14 +7,19 @@
       <div class="gameObject" v-for="(light, index) in scene.lights" :key="index">
         <h2>Light {{index + 1}}</h2>
         <div class="gameObject__property">
-          X: <input type="number" step="0.01" v-model="light.position[0]">
-          Y: <input type="number" step="0.01" v-model="light.position[1]">
+          Px: <input type="number" step="0.1" v-model.number="light.position[0]">
+          PY: <input type="number" step="0.1" v-model.number="light.position[1]">
         </div>
 
         <div class="gameObject__property">
-          R: <input type="number" step="0.01" v-model="light.color[0]">
-          G: <input type="number" step="0.01" v-model="light.color[1]">
-          B: <input type="number" step="0.01" v-model="light.color[2]">
+          R: <input type="number" step="0.1" v-model.number="light.color[0]">
+          G: <input type="number" step="0.1" v-model.number="light.color[1]">
+          B: <input type="number" step="0.1" v-model.number="light.color[2]">
+        </div>
+
+        <div class="gameObject__property">
+          Vx: <input type="number" step="0.1" v-model.number="light.velocity[0]">
+          Vy: <input type="number" step="0.1" v-model.number="light.velocity[1]">
         </div>
       </div>
 
@@ -24,14 +29,21 @@
       <div class="gameObject" v-for="(circle, index) in scene.circles" :key="index">
         <h2>Circle {{index + 1}}</h2>
         <div class="gameObject__property">
-          X: <input type="number" step="0.01" v-model="circle.position[0]">
-          Y: <input type="number" step="0.01" v-model="circle.position[1]">
+          Px: <input type="number" step="0.01" v-model.number="circle.position[0]">
+          Py: <input type="number" step="0.01" v-model.number="circle.position[1]">
         </div>
 
         <div class="gameObject__property">
-          R: <input type="number" step="0.01" v-model="circle.radius">
+          R: <input type="number" step="0.01" v-model.number="circle.radius">
+        </div>
+
+        <div class="gameObject__property">
+          Vx: <input type="number" step="0.1" v-model.number="circle.velocity[0]">
+          Vy: <input type="number" step="0.1" v-model.number="circle.velocity[1]">
         </div>
       </div>
+
+      <button @click="addCircle()">Add Circle</button>
     </div>
   </div>
 </template>
@@ -61,19 +73,39 @@ export default {
     // Create raytracer
     this.raytracer = new Raytracer(gl, this.scene.shaderSourceVars())
     this.raytracer.drawScene(this.scene)
+
+    let then = 0
+
+    const render = (now) => {
+      now *= 0.001 // convert to seconds
+      const deltaTime = now - then
+      then = now
+
+      this.scene.update(deltaTime)
+      this.raytracer.drawScene(this.scene)
+
+      requestAnimationFrame(render)
+    }
+    requestAnimationFrame(render)
   },
   methods: {
     addLight () {
       console.log('Recompiling shader')
       this.scene.addLight()
       this.raytracer.recompileShader(this.scene.shaderSourceVars())
+    },
+    addCircle () {
+      console.log('Recompiling shader')
+      this.scene.addCircle()
+      this.raytracer.recompileShader(this.scene.shaderSourceVars())
     }
   },
   watch: {
     scene: {
       handler: function () {
-        console.log('Redrawing scene')
-        this.raytracer.drawScene(this.scene)
+        // console.log('Redrawing scene')
+        // this.raytracer.drawScene(this.scene)
+        console.log('booh')
       },
       deep: true
     }
