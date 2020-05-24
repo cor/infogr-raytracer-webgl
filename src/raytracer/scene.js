@@ -24,4 +24,11 @@ export default class Scene {
       radius: 0.1
     }
   ]
+
+  shaderSourceVars () {
+    return {
+      LIGHT_COUNT: this.lights.length,
+      CIRCLE_COUNT: this.circles.length
+    }
+  }
 }

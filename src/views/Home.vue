@@ -17,7 +17,8 @@
           B: <input type="number" step="0.01" v-model="light.color[2]">
         </div>
       </div>
-
+    </div>
+    <div class="gameObject-container">
       <div class="gameObject" v-for="(circle, index) in scene.circles" :key="index">
         <h2>Circle {{index + 1}}</h2>
         <div class="gameObject__property">
@@ -56,7 +57,7 @@ export default {
     }
 
     // Create raytracer
-    this.raytracer = new Raytracer(gl)
+    this.raytracer = new Raytracer(gl, this.scene.shaderSourceVars())
     this.raytracer.drawScene(this.scene)
   },
   watch: {
