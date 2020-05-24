@@ -2,18 +2,31 @@
   <div class="home">
     <h1>INFOGR Raytracer WebGL</h1>
     <canvas id="glCanvas" width="600" height="600"></canvas>
-    <div class="light-container">
-      <div class="light" v-for="(light, index) in scene.lights" :key="index">
+    <div class="gameObject-container">
+
+      <div class="gameObject" v-for="(light, index) in scene.lights" :key="index">
         <h2>Light {{index + 1}}</h2>
-        <div class="light__position">
-          X: <input type="number" pattern="([0-9]{1,3}).([0-9]{1,3})" step="0.01" v-model="light.position[0]">
+        <div class="gameObject__property">
+          X: <input type="number" step="0.01" v-model="light.position[0]">
           Y: <input type="number" step="0.01" v-model="light.position[1]">
         </div>
 
-        <div class="light__color">
+        <div class="gameObject__property">
           R: <input type="number" step="0.01" v-model="light.color[0]">
           G: <input type="number" step="0.01" v-model="light.color[1]">
           B: <input type="number" step="0.01" v-model="light.color[2]">
+        </div>
+      </div>
+
+      <div class="gameObject" v-for="(circle, index) in scene.circles" :key="index">
+        <h2>Circle {{index + 1}}</h2>
+        <div class="gameObject__property">
+          X: <input type="number" step="0.01" v-model="circle.position[0]">
+          Y: <input type="number" step="0.01" v-model="circle.position[1]">
+        </div>
+
+        <div class="gameObject__property">
+          R: <input type="number" step="0.01" v-model="circle.radius">
         </div>
       </div>
     </div>
@@ -63,19 +76,19 @@ export default {
     text-align: center;
   }
 
-  .light-container {
+  .gameObject-container {
     text-align: center;
     width: auto;
     display: flex;
     flex-direction: column;
   }
-  .light {
+  .gameObject {
     display: inline-block;
     h2 {
       display: inline-block;
       margin-right: 64px;
     }
-    div {
+    &__property {
       display: inline-block;
       margin-right: 64px;
 

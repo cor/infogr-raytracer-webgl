@@ -56,6 +56,10 @@ export default class Shader {
     this.gl.useProgram(this.program)
   }
 
+  setUniform1f (name, value) {
+    this.gl.uniform1f(this.getUniformLocation(name), value)
+  }
+
   setUniformMatrix4fv (name, value) {
     this.gl.uniformMatrix4fv(this.getUniformLocation(name), false, value)
   }
