@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/infogr-raytracer-webgl/precache-manifest.8e9b3ee60b93361b888cf52299577cc2.js"
+  "/infogr-raytracer-webgl/precache-manifest.718b3af1eeaccde89d8767a8bea482cf.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "infogr-raytracer-webgl"});
