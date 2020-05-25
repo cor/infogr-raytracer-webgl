@@ -7,19 +7,14 @@
       <div class="gameObject" v-for="(light, index) in scene.lights" :key="index">
         <h2>Light {{index + 1}}</h2>
         <div class="gameObject__property">
-          Px: <input type="number" step="0.1" v-model.number="light.position[0]">
-          PY: <input type="number" step="0.1" v-model.number="light.position[1]">
+          X: <input type="number" step="0.1" v-model.number="light.position[0]">
+          Y: <input type="number" step="0.1" v-model.number="light.position[1]">
         </div>
 
         <div class="gameObject__property">
           R: <input type="number" step="0.1" v-model.number="light.color[0]">
           G: <input type="number" step="0.1" v-model.number="light.color[1]">
           B: <input type="number" step="0.1" v-model.number="light.color[2]">
-        </div>
-
-        <div class="gameObject__property">
-          Vx: <input type="number" step="0.1" v-model.number="light.velocity[0]">
-          Vy: <input type="number" step="0.1" v-model.number="light.velocity[1]">
         </div>
       </div>
 
@@ -29,17 +24,12 @@
       <div class="gameObject" v-for="(circle, index) in scene.circles" :key="index">
         <h2>Circle {{index + 1}}</h2>
         <div class="gameObject__property">
-          Px: <input type="number" step="0.01" v-model.number="circle.position[0]">
-          Py: <input type="number" step="0.01" v-model.number="circle.position[1]">
+          X: <input type="number" step="0.01" v-model.number="circle.position[0]">
+          Y: <input type="number" step="0.01" v-model.number="circle.position[1]">
         </div>
 
         <div class="gameObject__property">
           R: <input type="number" step="0.01" v-model.number="circle.radius">
-        </div>
-
-        <div class="gameObject__property">
-          Vx: <input type="number" step="0.1" v-model.number="circle.velocity[0]">
-          Vy: <input type="number" step="0.1" v-model.number="circle.velocity[1]">
         </div>
       </div>
 
@@ -49,6 +39,7 @@
 </template>
 
 <script>
+import clone from '../helpers/clone'
 import Raytracer from '../raytracer'
 import Scene from '../raytracer/scene.js'
 
@@ -74,19 +65,15 @@ export default {
     this.raytracer = new Raytracer(gl, this.scene.shaderSourceVars())
     this.raytracer.drawScene(this.scene)
 
-    let then = 0
+    // let then = 0
+    const scene0 = new Scene()
+    const scene1 = clone(scene0)
+    scene1.circles[0].position[0] = -90
 
-    const render = (now) => {
-      now *= 0.001 // convert to seconds
-      const deltaTime = now - then
-      then = now
+    console.log(scene0)
+    console.info(scene1)
 
-      this.scene.update(deltaTime)
-      this.raytracer.drawScene(this.scene)
-
-      requestAnimationFrame(render)
-    }
-    requestAnimationFrame(render)
+    console.log(this.scene)
   },
   methods: {
     addLight () {
