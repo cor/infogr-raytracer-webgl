@@ -10,24 +10,24 @@ export default class Movie {
   }
 
   currentScene (time) {
-    // TODO: Implement looping
     const sceneDurations = this.sceneDurations()
-    const lastSceneIndex = this.scenes.length - 1
+    const sceneCount = this.scenes.length
 
-    // Rewrite to binary search if this becomes a bottleneck
+    time %= this.duration()
+
     let timeSum = 0
     let sceneIndex = -1
-    while (timeSum < time && sceneIndex < lastSceneIndex) {
+    while (timeSum < time) {
       sceneIndex++
       timeSum += sceneDurations[sceneIndex]
+      sceneIndex %= sceneCount
     }
 
-    if (sceneIndex < lastSceneIndex) {
-      const scene0 = this.scenes[sceneIndex]
-      const normalizedTime = (time - timeSum + scene0.duration) / scene0.duration
-      return scene0.interpolate(this.scenes[sceneIndex + 1], normalizedTime)
-    } else {
-      return this.scenes[sceneIndex]
-    }
+    const scene0 = this.scenes[sceneIndex]
+    const scene1 = sceneIndex + 1 === sceneCount
+      ? this.scenes[0] // go back to scene 0 at the end
+      : this.scenes[sceneIndex + 1] // otherwise, go the the succeeding scene
+    const normalizedTime = (time - timeSum + scene0.duration) / scene0.duration
+    return scene0.interpolate(scene1, normalizedTime)
   }
 }

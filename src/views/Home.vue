@@ -70,16 +70,16 @@ export default {
     scene1.circles[0].position[0] = 1
     scene1.duration = 2
 
+    const scene2 = scene1.clone()
+    scene2.circles[0].position[0] = 2
+    scene2.duration = 3
+
     const movie = new Movie()
     movie.scenes.push(scene0)
     movie.scenes.push(scene1)
+    movie.scenes.push(scene2)
 
     console.log(movie)
-    console.log(movie.duration())
-    console.log(movie.currentScene(1))
-    console.log(movie.currentScene(2))
-    console.log(movie.currentScene(3))
-    console.log(movie.currentScene(4))
 
     // Draw the scene repeatedly while keeping track of time
     let time = 0

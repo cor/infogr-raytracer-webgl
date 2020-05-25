@@ -10,7 +10,7 @@ export default class Scene {
 
   circles = [
     {
-      position: [-0.8, 0.8],
+      position: [-1, 0.8],
       radius: 0.1
     },
     {
