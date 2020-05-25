@@ -12,13 +12,16 @@ export default class Movie {
   currentScene (time) {
     // TODO: Implement looping
     const sceneDurations = this.sceneDurations()
+    const lastSceneIndex = this.scenes.length - 1
 
     // Rewrite to binary search if this becomes a bottleneck
     let timeSum = 0
-    let sceneNumber = 0
-    while (timeSum < time) {
-      timeSum += sceneDurations[sceneNumber]
-      sceneNumber++
+    let sceneIndex = -1
+    while (timeSum < time && sceneIndex < lastSceneIndex) {
+      sceneIndex++
+      timeSum += sceneDurations[sceneIndex]
     }
+
+    return this.scenes[sceneIndex]
   }
 }

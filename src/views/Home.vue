@@ -77,6 +77,10 @@ export default {
 
     console.log(movie)
     console.log(movie.duration())
+    console.log(movie.currentScene(1))
+    console.log(movie.currentScene(2))
+    console.log(movie.currentScene(3))
+    console.log(movie.currentScene(4))
   },
   methods: {
     addLight () {
