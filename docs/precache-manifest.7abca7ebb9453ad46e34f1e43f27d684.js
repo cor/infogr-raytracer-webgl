@@ -4,11 +4,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/infogr-raytracer-webgl/404.html"
   },
   {
-    "revision": "de230628f4f112666371",
-    "url": "/infogr-raytracer-webgl/css/app.540b3aa9.css"
+    "revision": "6840d3f493fd798fbf12",
+    "url": "/infogr-raytracer-webgl/css/app.3b03f832.css"
   },
   {
-    "revision": "cafa6d7e33fa6bc6c86f97413d3e90a7",
+    "revision": "03bb78bfdb36469cb58197c2b1a4b012",
     "url": "/infogr-raytracer-webgl/index.html"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/infogr-raytracer-webgl/js/about.f7b116dc.js"
   },
   {
-    "revision": "de230628f4f112666371",
-    "url": "/infogr-raytracer-webgl/js/app.748febba.js"
+    "revision": "6840d3f493fd798fbf12",
+    "url": "/infogr-raytracer-webgl/js/app.b21de557.js"
   },
   {
     "revision": "b7abaf728497bedfca6e",
