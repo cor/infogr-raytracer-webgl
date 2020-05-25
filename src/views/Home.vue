@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import clone from '../helpers/clone'
 import Raytracer from '../raytracer'
 import Scene from '../raytracer/scene.js'
 import Movie from '../raytracer/movie.js'
@@ -67,7 +66,7 @@ export default {
     this.raytracer.drawScene(this.scene)
 
     const scene0 = new Scene()
-    const scene1 = clone(scene0)
+    const scene1 = scene0.clone()
     scene1.circles[0].position[0] = 1
     scene1.duration = 2
 
@@ -81,6 +80,16 @@ export default {
     console.log(movie.currentScene(2))
     console.log(movie.currentScene(3))
     console.log(movie.currentScene(4))
+
+    // Draw the scene repeatedly while keeping track of time
+    let time = 0
+    const render = (now) => {
+      now *= 0.001 // convert to seconds
+      time += now - time
+      this.raytracer.drawScene(movie.currentScene(time))
+      requestAnimationFrame(render)
+    }
+    requestAnimationFrame(render)
   },
   methods: {
     addLight () {

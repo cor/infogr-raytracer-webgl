@@ -22,6 +22,12 @@ export default class Movie {
       timeSum += sceneDurations[sceneIndex]
     }
 
-    return this.scenes[sceneIndex]
+    if (sceneIndex < lastSceneIndex) {
+      const scene0 = this.scenes[sceneIndex]
+      const normalizedTime = (time - timeSum + scene0.duration) / scene0.duration
+      return scene0.interpolate(this.scenes[sceneIndex + 1], normalizedTime)
+    } else {
+      return this.scenes[sceneIndex]
+    }
   }
 }
