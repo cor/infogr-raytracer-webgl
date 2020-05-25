@@ -1,5 +1,7 @@
+import Scene from './scene'
+
 export default class Movie {
-  scenes = []
+  scenes = [new Scene()]
 
   sceneDurations () {
     return this.scenes.map(s => s.duration)
@@ -7,6 +9,15 @@ export default class Movie {
 
   duration () {
     return this.sceneDurations().reduce((d0, d1) => d0 + d1, 0)
+  }
+
+  lastScene () {
+    return this.scenes[this.scenes.length - 1]
+  }
+
+  addScene () {
+    this.scenes.push(this.lastScene().clone())
+    return this.lastScene()
   }
 
   currentScene (time) {
