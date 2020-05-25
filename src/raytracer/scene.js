@@ -21,7 +21,11 @@ export default class Scene {
     return clone(this)
   }
 
-  interpolate (nextScene, t) {
+  interpolate (nextScene, t, linear = false) {
+    if (!linear) { // Ease in and ease out
+      t = (Math.sin((t - 0.5) * Math.PI) + 1) / 2
+    }
+
     const interpolatedScene = this.clone()
 
     // I = C + t(N-C)
@@ -46,17 +50,11 @@ export default class Scene {
   }
 
   addLight () {
-    this.lights.push({
-      position: [0.5, 0.5],
-      color: [1, 1, 1]
-    })
+    this.lights.push(clone(this.lights[this.lights.length - 1]))
   }
 
   addCircle () {
-    this.circles.push({
-      position: [0, -0.5],
-      radius: 0.1
-    })
+    this.circles.push(clone(this.circles[this.circles.length - 1]))
   }
 
   shaderSourceVars () {
