@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>INFOGR Raytracer WebGL</h1>
+    <h2><a href="https://github.com/cor">cor</a> & <a href="https://github.com/kaiserkarel">kaiserkarel</a></h2>
     <canvas id="glCanvas" width="800" height="800"></canvas>
   </div>
 </template>
@@ -51,5 +52,18 @@ export default {
 <style lang="scss">
   .home {
     text-align: center;
+  }
+  h1 {
+    margin-bottom: 0;
+  }
+  h2 {
+    margin: 0 8px 16px 8px;
+    font-size: 20px;
+    a {
+      color: inherit;
+      &:visited {
+        color: inherit;
+      }
+    }
   }
 </style>
