@@ -1,67 +1,64 @@
+import clone from '../helpers/clone'
+
 export default class Scene {
   lights = [
     {
-      position: [-5, 5.6],
-      color: [1, 0, 2.4],
-      velocity: [1, -1]
+      position: [1, 1],
+      color: [1, 1, 1]
     }
-    // {
-    //   position: [-2, -2],
-    //   color: [0.5, 0.3, 0.3],
-    //   velocity: [0, 0]
-    // }
   ]
 
   circles = [
     {
-      position: [-0.8, 0.8],
-      radius: 0.1,
-      velocity: [0, 0]
-    },
-    {
-      position: [0.8, -0.8],
-      radius: 0.1,
-      velocity: [0, 0]
-    },
-    {
       position: [0, 0],
-      radius: 0.1,
-      velocity: [0, 0]
+      radius: 0.1
     }
   ]
 
-  update (deltaTime) {
-    for (const light of this.lights) {
-      light.position[0] += light.velocity[0] * deltaTime
-      light.position[1] += light.velocity[1] * deltaTime
+  duration = 1
+
+  clone () {
+    return clone(this)
+  }
+
+  interpolate (nextScene, t, linear = false) {
+    const interpolatedScene = this.clone()
+
+    if (!linear) { // Ease in and ease out
+      t = (Math.sin((t - 0.5) * Math.PI) + 1) / 2
     }
 
-    for (const circle of this.circles) {
-      circle.position[0] += circle.velocity[0] * deltaTime
-      circle.position[1] += circle.velocity[1] * deltaTime
-    }
+    // Interpolated = Current + t(Next-Current)
+    this.lights.forEach((light, i) => {
+      for (const p in interpolatedScene.lights[i].position) {
+        interpolatedScene.lights[i].position[p] =
+          light.position[p] + t * (nextScene.lights[i].position[p] - light.position[p])
+      }
+
+      for (const c in interpolatedScene.lights[i].color) {
+        interpolatedScene.lights[i].color[c] =
+          light.color[c] + t * (nextScene.lights[i].color[c] - light.color[c])
+      }
+    })
+
+    this.circles.forEach((circle, i) => {
+      for (const p in interpolatedScene.circles[i].position) {
+        interpolatedScene.circles[i].position[p] =
+          circle.position[p] + t * (nextScene.circles[i].position[p] - circle.position[p])
+      }
+
+      interpolatedScene.circles[i].radius =
+        circle.radius + t * (nextScene.circles[i].radius - circle.radius)
+    })
+
+    return interpolatedScene
   }
 
   addLight () {
-    this.lights.push({
-      position: [0.5, 0.5],
-      color: [1, 1, 1],
-      velocity: [0, 0]
-    })
+    this.lights.push(clone(this.lights[this.lights.length - 1]))
   }
 
   addCircle () {
-    this.circles.push({
-      position: [0, -0.5],
-      radius: 0.1,
-      velocity: [0, 0]
-    })
-  }
-
-  shaderSourceVars () {
-    return {
-      LIGHT_COUNT: this.lights.length,
-      CIRCLE_COUNT: this.circles.length
-    }
+    this.circles.push(clone(this.circles[this.circles.length - 1]))
   }
 }
