@@ -2,6 +2,22 @@ import Scene from './scene'
 
 export default class Movie {
   scenes = [new Scene()]
+  shaderSourceVars
+
+  constructor (lightCount, circleCount) {
+    this.shaderSourceVars = {
+      LIGHT_COUNT: lightCount,
+      CIRCLE_COUNT: circleCount
+    }
+
+    for (let i = 1; i < lightCount; i++) {
+      this.lastScene().addLight()
+    }
+
+    for (let i = 1; i < circleCount; i++) {
+      this.lastScene().addCircle()
+    }
+  }
 
   sceneDurations () {
     return this.scenes.map(s => s.duration)
@@ -38,6 +54,7 @@ export default class Movie {
     const scene1 = sceneIndex + 1 === sceneCount
       ? this.scenes[0] // go back to scene 0 at the end
       : this.scenes[sceneIndex + 1] // otherwise, go the the succeeding scene
+
     const normalizedTime = (time - timeSum + scene0.duration) / scene0.duration
     return scene0.interpolate(scene1, normalizedTime)
   }

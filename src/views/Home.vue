@@ -29,8 +29,7 @@ export default {
     }
 
     // Create raytracer
-    // TODO: Rewrite such that movie defines shader source vars
-    this.raytracer = new Raytracer(gl, this.movie.scenes[0].shaderSourceVars())
+    this.raytracer = new Raytracer(gl, this.movie.shaderSourceVars)
 
     this.playMovie()
   },

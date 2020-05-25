@@ -22,28 +22,33 @@ export default class Scene {
   }
 
   interpolate (nextScene, t, linear = false) {
+    const interpolatedScene = this.clone()
+
     if (!linear) { // Ease in and ease out
       t = (Math.sin((t - 0.5) * Math.PI) + 1) / 2
     }
 
-    const interpolatedScene = this.clone()
-
-    // I = C + t(N-C)
-    // TODO: Refactor this to be more DRY
+    // Interpolated = Current + t(Next-Current)
     this.lights.forEach((light, i) => {
-      interpolatedScene.lights[i].position[0] = light.position[0] + t * (nextScene.lights[i].position[0] - light.position[0])
-      interpolatedScene.lights[i].position[1] = light.position[1] + t * (nextScene.lights[i].position[1] - light.position[1])
+      for (const p in interpolatedScene.lights[i].position) {
+        interpolatedScene.lights[i].position[p] =
+          light.position[p] + t * (nextScene.lights[i].position[p] - light.position[p])
+      }
 
-      interpolatedScene.lights[i].color[0] = light.color[0] + t * (nextScene.lights[i].color[0] - light.color[0])
-      interpolatedScene.lights[i].color[1] = light.color[1] + t * (nextScene.lights[i].color[1] - light.color[1])
-      interpolatedScene.lights[i].color[2] = light.color[2] + t * (nextScene.lights[i].color[2] - light.color[2])
+      for (const c in interpolatedScene.lights[i].color) {
+        interpolatedScene.lights[i].color[c] =
+          light.color[c] + t * (nextScene.lights[i].color[c] - light.color[c])
+      }
     })
 
     this.circles.forEach((circle, i) => {
-      interpolatedScene.circles[i].position[0] = circle.position[0] + t * (nextScene.circles[i].position[0] - circle.position[0])
-      interpolatedScene.circles[i].position[1] = circle.position[1] + t * (nextScene.circles[i].position[1] - circle.position[1])
+      for (const p in interpolatedScene.circles[i].position) {
+        interpolatedScene.circles[i].position[p] =
+          circle.position[p] + t * (nextScene.circles[i].position[p] - circle.position[p])
+      }
 
-      interpolatedScene.circles[i].radius = circle.radius + t * (nextScene.circles[i].radius - circle.radius)
+      interpolatedScene.circles[i].radius =
+        circle.radius + t * (nextScene.circles[i].radius - circle.radius)
     })
 
     return interpolatedScene
@@ -55,12 +60,5 @@ export default class Scene {
 
   addCircle () {
     this.circles.push(clone(this.circles[this.circles.length - 1]))
-  }
-
-  shaderSourceVars () {
-    return {
-      LIGHT_COUNT: this.lights.length,
-      CIRCLE_COUNT: this.circles.length
-    }
   }
 }
