@@ -42,6 +42,7 @@
 import clone from '../helpers/clone'
 import Raytracer from '../raytracer'
 import Scene from '../raytracer/scene.js'
+import Movie from '../raytracer/movie.js'
 
 export default {
   name: 'Home',
@@ -65,15 +66,17 @@ export default {
     this.raytracer = new Raytracer(gl, this.scene.shaderSourceVars())
     this.raytracer.drawScene(this.scene)
 
-    // let then = 0
     const scene0 = new Scene()
     const scene1 = clone(scene0)
-    scene1.circles[0].position[0] = -90
+    scene1.circles[0].position[0] = 1
+    scene1.duration = 2
 
-    console.log(scene0)
-    console.info(scene1)
+    const movie = new Movie()
+    movie.scenes.push(scene0)
+    movie.scenes.push(scene1)
 
-    console.log(this.scene)
+    console.log(movie)
+    console.log(movie.duration())
   },
   methods: {
     addLight () {

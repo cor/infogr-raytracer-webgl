@@ -21,6 +21,8 @@ export default class Scene {
     }
   ]
 
+  duration = 1
+
   addLight () {
     this.lights.push({
       position: [0.5, 0.5],
