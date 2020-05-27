@@ -94,7 +94,7 @@ struct RawRect {
 
 #define RECTANGLE_COUNT 42//$RECTANGLE_COUNT//
 uniform RawRect rectangles[RECTANGLE_COUNT];
-
+Rectangle rects[RECTANGLE_COUNT];
 bool lineIntersects(Ray ray, vec2 lineStart, vec2 lineEnd) {
     vec2 rayStart = ray.origin;
     vec2 rayEnd = ray.origin + ray.direction;
@@ -156,8 +156,7 @@ vec3 Trace(vec2 worldPoint)
         if (occluded) continue;
 
         for (int r = 0; r < RECTANGLE_COUNT; r++) {
-            RawRect raw = rectangles[r];
-            Rectangle rect = newRectangle(raw.position, raw.width, raw.height, raw.angle);
+            Rectangle rect = rects[i];
             if (rectangleIntersect(ray, rect)) {
                 occluded = true;
                 break;
@@ -178,5 +177,10 @@ vec3 Trace(vec2 worldPoint)
 
 
 void main() {
+    for (int r = 0; r < RECTANGLE_COUNT; r++) {
+        RawRect raw = rectangles[r];
+        rects[r] = newRectangle(raw.position, raw.width, raw.height, raw.angle);
+    }
+
     gl_FragColor = vec4(Trace(ToWorldSpace(screenPosition)), 1.0);
 }
