@@ -95,6 +95,7 @@ export default class Raytracer {
 
     this.setLightUniforms(scene)
     this.setCircleUniforms(scene)
+    this.setRectUniforms(scene)
 
     // Set the shader uniforms
     this.shader.setUniformMatrix4fv('uProjectionMatrix', projectionMatrix)
@@ -117,6 +118,15 @@ export default class Raytracer {
     for (const [i, circle] of scene.circles.entries()) {
       this.shader.setUniform2fv(`circles[${i}].position`, new Float32Array(circle.position))
       this.shader.setUniform1f(`circles[${i}].radius`, circle.radius)
+    }
+  }
+
+  setRectUniforms (scene) {
+    for (const [i, rect] of scene.rectangles.entries()) {
+      this.shader.setUniform2fv(`rectangles[${i}].position`, new Float32Array(rect.position))
+      this.shader.setUniform1f(`rectangles[${i}].width`, rect.width)
+      this.shader.setUniform1f(`rectangles[${i}].height`, rect.height)
+      this.shader.setUniform1f(`rectangles[${i}].angle`, rect.angle)
     }
   }
 }

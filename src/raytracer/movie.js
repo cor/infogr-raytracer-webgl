@@ -4,7 +4,7 @@ export default class Movie {
   scenes = [new Scene()]
   shaderSourceVars
 
-  constructor (lightCount, circleCount) {
+  constructor (lightCount, circleCount, rectangleCount) {
     this.shaderSourceVars = {
       LIGHT_COUNT: lightCount,
       CIRCLE_COUNT: circleCount
@@ -16,6 +16,10 @@ export default class Movie {
 
     for (let i = 1; i < circleCount; i++) {
       this.lastScene().addCircle()
+    }
+
+    for (let i = 1; i < rectangleCount; i++) {
+      this.lastScene().addRectangle()
     }
   }
 

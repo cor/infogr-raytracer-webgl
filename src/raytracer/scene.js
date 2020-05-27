@@ -15,6 +15,15 @@ export default class Scene {
     }
   ]
 
+  rectangles = [
+    {
+      center: [0.0],
+      width: 0.1,
+      height: 0.1,
+      angle: 0.4
+    }
+  ]
+
   duration = 1
 
   clone () {
@@ -60,5 +69,9 @@ export default class Scene {
 
   addCircle () {
     this.circles.push(clone(this.circles[this.circles.length - 1]))
+  }
+
+  addRectangle () {
+    this.rectangles.push(clone(this.rectangles[this.rectangles.length - 1]))
   }
 }

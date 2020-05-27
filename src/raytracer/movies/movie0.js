@@ -1,7 +1,7 @@
 import Movie from '../movie'
 
 export default function movie0 () {
-  const m = new Movie(4, 9)
+  const m = new Movie(4, 5, 4)
   let s = m.lastScene()
   s.lights[0].position = [-2.5, 2.5]
   s.lights[0].color = [0, 0, 0]
@@ -50,10 +50,10 @@ export default function movie0 () {
   s.circles[2].position = [1, -1]
   s.circles[3].position = [1, -1]
   s.circles[4].position = [1, -1]
-  s.circles[5].position = [1, -1]
-  s.circles[6].position = [1, -1]
-  s.circles[7].position = [1, -1]
-  s.circles[8].position = [1, -1]
+  s.rectangles[0].position = [1, -1]
+  s.rectangles[1].position = [1, -1]
+  s.rectangles[2].position = [1, -1]
+  s.rectangles[3].position = [1, -1]
 
   s.lights[0].position = [0, 0]
 
@@ -100,10 +100,10 @@ export default function movie0 () {
   s.circles[4].radius = 0.1
 
   s = m.addScene()
-  s.circles[5].position = [1, 0.5]
-  s.circles[6].position = [1, -0.5]
-  s.circles[7].position = [0.5, -1]
-  s.circles[8].position = [-0.5, -1]
+  s.rectangles[0].position = [1, 0.5]
+  s.rectangles[1].position = [1, -0.5]
+  s.rectangles[2].position = [0.5, -1]
+  s.rectangles[3].position = [-0.5, -1]
 
   s = m.addScene()
   s.lights[0].color = [0, 0, 0]
