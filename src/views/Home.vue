@@ -21,6 +21,13 @@
       <p>
         The movie consists of a set of static scenes, which are interpolated to generate fluid motion.
       </p>
+      <p>
+        As part of our assignment, we first implemented the 2D tracer in C#, after porting the provided template project, removing deprecated OpenGL practices. Next we reimplemented the same ray tracer using OpenGL in a fragment shader. Lastly we ported our OpenGL 3.0 fragment shader to WebGL (which uses OpenGL 1.0 ES). Running the WebGL shader requires NPM and Node, the options are explained in the README.
+      </p>
+
+      <p>
+        DISCLAIMER: works best on desktop browsers.
+      </p>
     </div>
   </div>
 </template>

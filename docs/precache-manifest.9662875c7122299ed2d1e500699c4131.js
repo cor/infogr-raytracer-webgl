@@ -4,11 +4,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/infogr-raytracer-webgl/404.html"
   },
   {
-    "revision": "6840d3f493fd798fbf12",
-    "url": "/infogr-raytracer-webgl/css/app.3b03f832.css"
+    "revision": "9fb9273e3f6e435183f8",
+    "url": "/infogr-raytracer-webgl/css/app.821394ac.css"
   },
   {
-    "revision": "03bb78bfdb36469cb58197c2b1a4b012",
+    "revision": "67406b1a1a055c4c59a4dbbc3e35a931",
     "url": "/infogr-raytracer-webgl/index.html"
   },
   {
@@ -16,12 +16,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/infogr-raytracer-webgl/js/about.f7b116dc.js"
   },
   {
-    "revision": "6840d3f493fd798fbf12",
-    "url": "/infogr-raytracer-webgl/js/app.b21de557.js"
+    "revision": "9fb9273e3f6e435183f8",
+    "url": "/infogr-raytracer-webgl/js/app.d9ce5773.js"
   },
   {
-    "revision": "b7abaf728497bedfca6e",
-    "url": "/infogr-raytracer-webgl/js/chunk-vendors.434f6477.js"
+    "revision": "6fb70a94f3d3cb96936a",
+    "url": "/infogr-raytracer-webgl/js/chunk-vendors.7cab0d61.js"
   },
   {
     "revision": "144808dc56323f0dcbff51d3bc4d95c3",
