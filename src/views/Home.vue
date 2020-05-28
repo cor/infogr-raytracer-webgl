@@ -2,6 +2,7 @@
   <div class="home">
     <h1>INFOGR Raytracer WebGL</h1>
     <h2><a href="https://github.com/cor">cor</a> & <a href="https://github.com/kaiserkarel">kaiserkarel</a></h2>
+    <button class="tablink" v-for="movie in movies" :key="movie.id" v-on:click="playMovie(movie)">{{movie.id}}</button>
     <canvas id="glCanvas" width="800" height="800"></canvas>
   </div>
 </template>
@@ -9,42 +10,48 @@
 <script>
 import Raytracer from '../raytracer'
 
-// import movie0 from '../raytracer/movies/movie0.js'
 import movie1 from '../raytracer/movies/movie1.js'
+import movie0 from '../raytracer/movies/movie0.js'
 
 export default {
   name: 'Home',
   data () {
     return {
+      frameId: null,
+      startTime: 0,
       raytracer: null,
-      movie: movie1()
+      movies: [movie0(), movie1()]
     }
-  },
-  mounted () {
-    // Get WebGL context
-    const canvas = document.querySelector('#glCanvas')
-    const gl = canvas.getContext('webgl')
-
-    // Notify users of browsers that do not support WebGL
-    if (gl === null) {
-      alert('Unable to initialize WebGL. Your browser or machine may not support it.')
-    }
-
-    // Create raytracer
-    this.raytracer = new Raytracer(gl, this.movie.shaderSourceVars)
-
-    this.playMovie()
   },
   methods: {
-    playMovie () {
-      let time = 0
+    playMovie (movie) {
+      if (this.frameId !== null) {
+        cancelAnimationFrame(this.frameId)
+      }
+
+      this.startTime = null
+
+      const canvas = document.querySelector('#glCanvas')
+      const gl = canvas.getContext('webgl')
+
+      // Notify users of browsers that do not support WebGL
+      if (gl === null) {
+        alert('Unable to initialize WebGL. Your browser or machine may not support it.')
+      }
+
+      this.raytracer = new Raytracer(gl, movie.shaderSourceVars)
+
       const render = (now) => {
         now *= 0.001 // convert to seconds
-        time += now - time
-        this.raytracer.drawScene(this.movie.currentScene(time))
-        requestAnimationFrame(render)
+        if (this.startTime === null) {
+          this.startTime = now
+        }
+
+        const time = 0.0001 + now - this.startTime
+        this.raytracer.drawScene(movie.currentScene(time))
+        this.frameId = requestAnimationFrame(render)
       }
-      requestAnimationFrame(render)
+      this.frameId = requestAnimationFrame(render)
     }
   }
 }
@@ -67,4 +74,22 @@ export default {
       }
     }
   }
+
+  /* Style tab links */
+  .tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+  }
+
+  .tablink:hover {
+    background-color: #777;
+  }
+
 </style>
