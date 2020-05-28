@@ -64,7 +64,7 @@ export default class Raytracer {
 
     // Create a perspective matrix, a special matrix that is
     // used to simulate the distortion of perspective in a camera.
-    const fieldOfView = 45 * Math.PI / 180 // in radians
+    const fieldOfView = 43.5 * Math.PI / 180 // in radians
     const aspect = this.gl.canvas.clientWidth / this.gl.canvas.clientHeight
     const zNear = 0.1
     const zFar = 100.0
