@@ -17,8 +17,6 @@ export default function movie0 () {
   s.duration = 2
 
   s = m.addScene()
-
-  s = m.addScene()
   s.lights[0].position = [-0.5, 0.5]
   s.duration = 0.5
 
@@ -50,10 +48,18 @@ export default function movie0 () {
   s.circles[2].position = [1, -1]
   s.circles[3].position = [1, -1]
   s.circles[4].position = [1, -1]
-  s.rectangles[0].position = [1, -1]
-  s.rectangles[1].position = [1, -1]
-  s.rectangles[2].position = [1, -1]
-  s.rectangles[3].position = [1, -1]
+
+  s = m.addScene()
+  s.rectangles[0].position = [0, 0]
+  s.rectangles[1].position = [0, 0]
+  s.rectangles[2].position = [0, 0]
+  s.rectangles[3].position = [0, 0]
+
+  s = m.addScene()
+  s.rectangles[0].position = [-1.3, -1.5]
+  s.rectangles[1].position = [1.3, -1.5]
+  s.rectangles[2].position = [-1.3, 1.5]
+  s.rectangles[3].position = [1.3, 1.5]
 
   s.lights[0].position = [0, 0]
 
@@ -74,20 +80,62 @@ export default function movie0 () {
   s.lights[1].color = [9, 4, 8]
 
   s = m.addScene()
+  s.rectangles[0].angle = 0.2
+  s.rectangles[1].angle = 0.2
+  s.rectangles[2].angle = 0.2
+  s.rectangles[3].angle = 0.2
+
+  s = m.addScene()
+  s.rectangles[0].angle = 1.5
+  s.rectangles[1].angle = 1.5
+  s.rectangles[2].angle = 1.5
+  s.rectangles[3].angle = 1.5
+
+  s = m.addScene()
+  s.rectangles[0].angle = 3
+  s.rectangles[1].angle = 3
+  s.rectangles[2].angle = 3
+  s.rectangles[3].angle = 3
+
+  s = m.addScene()
   s.lights[1].position = [0, 1.8]
   s.duration = 1
+
+  s = m.addScene()
+  s.rectangles[0].angle = 4.5
+  s.rectangles[1].angle = 4.5
+  s.rectangles[2].angle = 4.5
+  s.rectangles[3].angle = 4.5
 
   s = m.addScene()
   s.lights[1].position = [1.8, 1.8]
 
   s = m.addScene()
+  s.rectangles[0].angle = 6
+  s.rectangles[1].angle = 6
+  s.rectangles[2].angle = 6
+  s.rectangles[3].angle = 6
+
+  s = m.addScene()
   s.lights[1].position = [1.8, -1.8]
+
+  s = m.addScene()
+  s.rectangles[0].width = 0.3
+  s.rectangles[1].width = 0.3
+  s.rectangles[2].width = 0.3
+  s.rectangles[3].width = 0.3
 
   s = m.addScene()
   s.lights[1].position = [-1.8, -1.8]
 
   s = m.addScene()
   s.lights[1].position = [-1.8, 0]
+
+  s = m.addScene()
+  s.rectangles[0].height = 0.3
+  s.rectangles[1].height = 0.3
+  s.rectangles[2].height = 0.3
+  s.rectangles[3].height = 0.3
 
   s = m.addScene()
   s.lights[1].position = [0, 0]
