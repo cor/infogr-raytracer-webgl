@@ -1,6 +1,6 @@
 import Movie from '../movie'
 
-export default function movie1 () {
+export default function rectangleMovie () {
   const m = new Movie('Rectangle Movie', 2, 1, 9)
   let s = m.lastScene()
 

@@ -1,6 +1,6 @@
 import Movie from '../movie'
 
-export default function movie0 () {
+export default function circleMovie () {
   const m = new Movie('Circle Movie', 4, 9, 1)
 
   // Setup inital scene

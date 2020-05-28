@@ -10,8 +10,8 @@
 <script>
 import Raytracer from '../raytracer'
 
-import movie1 from '../raytracer/movies/movie1.js'
-import movie0 from '../raytracer/movies/movie0.js'
+import rectangleMovie from '../raytracer/movies/rectangle-movie.js'
+import circleMovie from '../raytracer/movies/circle-movie.js'
 
 export default {
   name: 'Home',
@@ -20,7 +20,7 @@ export default {
       frameId: null,
       startTime: 0,
       raytracer: null,
-      movies: [movie0(), movie1()]
+      movies: [circleMovie(), rectangleMovie()]
     }
   },
   methods: {
