@@ -2,7 +2,9 @@
   <div class="home">
     <h1>INFOGR Raytracer WebGL</h1>
     <h2><a href="https://github.com/cor">cor</a> & <a href="https://github.com/kaiserkarel">kaiserkarel</a></h2>
-    <button class="tablink" v-for="movie in movies" :key="movie.id" v-on:click="playMovie(movie)">{{movie.id}}</button>
+    <div class="tablink-container">
+      <button class="tablink" v-for="movie in movies" :key="movie.id" v-on:click="playMovie(movie)">{{movie.id}}</button>
+    </div>
     <canvas id="glCanvas" width="800" height="800"></canvas>
   </div>
 </template>
@@ -58,6 +60,11 @@ export default {
 </script>
 
 <style lang="scss">
+
+  $gray: #111;
+  $dark-gray: #222;
+  $border-width: 4px;
+
   .home {
     text-align: center;
   }
@@ -77,7 +84,7 @@ export default {
 
   /* Style tab links */
   .tablink {
-    background-color: #555;
+    background-color: $gray;
     color: white;
     float: left;
     border: none;
@@ -85,11 +92,24 @@ export default {
     cursor: pointer;
     padding: 14px 16px;
     font-size: 17px;
-    width: 25%;
+    /*width: 400px;*/
+    flex: 1;
+
+    border: solid $dark-gray;
+    border-width: $border-width $border-width 0 $border-width;
   }
 
+  .tablink-container {
+    display: flex;
+    width: 800px + 2 * $border-width;
+    margin: 0 auto;
+  }
   .tablink:hover {
     background-color: #777;
   }
 
+  canvas {
+    border: solid $dark-gray;
+    border-width: 0 $border-width $border-width $border-width;
+  }
 </style>
