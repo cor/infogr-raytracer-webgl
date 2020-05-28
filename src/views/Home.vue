@@ -2,7 +2,11 @@
   <div class="home">
     <h1>INFOGR Raytracer WebGL</h1>
     <h2><a href="https://github.com/cor">cor</a> & <a href="https://github.com/kaiserkarel">kaiserkarel</a></h2>
-    <button class="tablink" v-for="movie in movies" :key="movie.id" v-on:click="playMovie(movie)">{{movie.id}}</button>
+    <router-link
+      class="tablink"
+      v-for="(movie, index) in movies" :key="movie.id"
+      :to="{name: 'Movie', params: {id: index}}"
+    >{{movie.id}}</router-link>
     <canvas id="glCanvas" width="800" height="800"></canvas>
   </div>
 </template>
@@ -24,8 +28,14 @@ export default {
     }
   },
 
-  mounted () {
-    this.playMovie(this.movies[0])
+  watch: {
+    $route (to, from) {
+      this.playMovie(this.movies[this.id || 0])
+    }
+  },
+
+  props: {
+    id: Number
   },
 
   methods: {

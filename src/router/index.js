@@ -11,6 +11,16 @@ const routes = [
     component: Home
   },
   {
+    path: '/movie/:id',
+    name: 'Movie',
+    component: Home,
+    props (route) {
+      const props = { ...route.params }
+      props.id = +props.id
+      return props
+    }
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
