@@ -15,6 +15,15 @@ export default class Scene {
     }
   ]
 
+  rectangles = [
+    {
+      position: [0, 0],
+      width: 0.1,
+      height: 0.1,
+      angle: 0
+    }
+  ]
+
   duration = 1
 
   clone () {
@@ -51,6 +60,22 @@ export default class Scene {
         circle.radius + t * (nextScene.circles[i].radius - circle.radius)
     })
 
+    this.rectangles.forEach((rectangle, i) => {
+      for (const p in interpolatedScene.rectangles[i].position) {
+        interpolatedScene.rectangles[i].position[p] =
+          rectangle.position[p] + t * (nextScene.rectangles[i].position[p] - rectangle.position[p])
+      }
+
+      interpolatedScene.rectangles[i].width =
+        rectangle.width + t * (nextScene.rectangles[i].width - rectangle.width)
+
+      interpolatedScene.rectangles[i].height =
+        rectangle.height + t * (nextScene.rectangles[i].height - rectangle.height)
+
+      interpolatedScene.rectangles[i].angle =
+        rectangle.angle + t * (nextScene.rectangles[i].angle - rectangle.angle)
+    })
+
     return interpolatedScene
   }
 
@@ -60,5 +85,9 @@ export default class Scene {
 
   addCircle () {
     this.circles.push(clone(this.circles[this.circles.length - 1]))
+  }
+
+  addRectangle () {
+    this.rectangles.push(clone(this.rectangles[this.rectangles.length - 1]))
   }
 }

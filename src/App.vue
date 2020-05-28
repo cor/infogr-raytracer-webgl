@@ -12,7 +12,7 @@
   text-align: left;
   --primary-font-color: #aaa;
   --secondary-font-color: #777;
-  color: #ccc;
+  color: #DFCFBE;
   background-color: #000;
 }
 </style>

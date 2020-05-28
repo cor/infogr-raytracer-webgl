@@ -7,8 +7,19 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: '/movie/0',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/movie/:id',
+    name: 'Movie',
+    component: Home,
+    props (route) {
+      const props = { ...route.params }
+      props.id = +props.id
+      return props
+    }
   },
   {
     path: '/about',

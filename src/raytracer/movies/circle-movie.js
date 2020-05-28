@@ -1,8 +1,15 @@
 import Movie from '../movie'
 
-export default function movie0 () {
-  const m = new Movie(4, 9)
+export default function circleMovie () {
+  const m = new Movie('Circle Movie', 4, 9, 1)
+
+  // Setup inital scene
   let s = m.lastScene()
+  s.rectangles[0].width = 0
+  s.rectangles[0].height = 0
+  s.rectangles[0].position = [-10, 0]
+  s.addCircle()
+
   s.lights[0].position = [-2.5, 2.5]
   s.lights[0].color = [0, 0, 0]
   s.lights[1].position = [0, 0]
@@ -58,6 +65,9 @@ export default function movie0 () {
   s.lights[0].position = [0, 0]
 
   s = m.addScene()
+  s.circles[0].radius = 0.4
+  s.circles[1].radius = 0.5
+  s.lights[0].color = [9, 4, 8]
   s.circles[3].position = [1, 0]
   s.circles[4].position = [0, -1]
 

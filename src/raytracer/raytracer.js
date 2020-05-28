@@ -64,7 +64,7 @@ export default class Raytracer {
 
     // Create a perspective matrix, a special matrix that is
     // used to simulate the distortion of perspective in a camera.
-    const fieldOfView = 45 * Math.PI / 180 // in radians
+    const fieldOfView = 43.5 * Math.PI / 180 // in radians
     const aspect = this.gl.canvas.clientWidth / this.gl.canvas.clientHeight
     const zNear = 0.1
     const zFar = 100.0
@@ -95,6 +95,7 @@ export default class Raytracer {
 
     this.setLightUniforms(scene)
     this.setCircleUniforms(scene)
+    this.setRectUniforms(scene)
 
     // Set the shader uniforms
     this.shader.setUniformMatrix4fv('uProjectionMatrix', projectionMatrix)
@@ -117,6 +118,15 @@ export default class Raytracer {
     for (const [i, circle] of scene.circles.entries()) {
       this.shader.setUniform2fv(`circles[${i}].position`, new Float32Array(circle.position))
       this.shader.setUniform1f(`circles[${i}].radius`, circle.radius)
+    }
+  }
+
+  setRectUniforms (scene) {
+    for (const [i, rect] of scene.rectangles.entries()) {
+      this.shader.setUniform2fv(`rectangles[${i}].position`, new Float32Array(rect.position))
+      this.shader.setUniform1f(`rectangles[${i}].width`, rect.width)
+      this.shader.setUniform1f(`rectangles[${i}].height`, rect.height)
+      this.shader.setUniform1f(`rectangles[${i}].angle`, rect.angle)
     }
   }
 }
