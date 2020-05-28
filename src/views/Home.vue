@@ -49,6 +49,10 @@ export default {
     }
   },
 
+  mounted () {
+    this.playMovie(this.movies[this.id || 0])
+  },
+
   watch: {
     $route (to, from) {
       this.playMovie(this.movies[this.id || 0])
