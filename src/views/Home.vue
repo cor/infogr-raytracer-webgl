@@ -107,4 +107,7 @@ export default {
     background-color: #777;
   }
 
+  .router-link-active {
+    color: blue;
+  }
 </style>
