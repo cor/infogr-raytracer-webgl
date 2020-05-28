@@ -1,7 +1,7 @@
 import Movie from '../movie'
 
-export default function movie1 () {
-  const m = new Movie('movie1', 2, 1, 9)
+export default function rectangleMovie () {
+  const m = new Movie('Rectangle Movie', 2, 1, 9)
   let s = m.lastScene()
 
   const brightness = 2
