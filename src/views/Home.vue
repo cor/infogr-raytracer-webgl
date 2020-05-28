@@ -102,7 +102,9 @@ export default {
   .tablink {
     border-radius: 16px 16px 0 0;
     background-color: $gray;
-    color: white;
+    color: $highlight-color;
+    text-decoration: none;
+    font-weight: bold;
     float: left;
     border: none;
     outline: none;
