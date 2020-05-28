@@ -9,14 +9,15 @@
 <script>
 import Raytracer from '../raytracer'
 
-import movie0 from '../raytracer/movies/movie0.js'
+// import movie0 from '../raytracer/movies/movie0.js'
+import movie1 from '../raytracer/movies/movie1.js'
 
 export default {
   name: 'Home',
   data () {
     return {
       raytracer: null,
-      movie: movie0()
+      movie: movie1()
     }
   },
   mounted () {
