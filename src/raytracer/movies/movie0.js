@@ -1,7 +1,7 @@
 import Movie from '../movie'
 
 export default function movie0 () {
-  const m = new Movie(4, 5, 4)
+  const m = new Movie('movie0', 4, 5, 4)
   let s = m.lastScene()
   s.lights[0].position = [-2.5, 2.5]
   s.lights[0].color = [0, 0, 0]

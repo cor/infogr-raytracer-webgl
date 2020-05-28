@@ -1,7 +1,7 @@
 import Movie from '../movie'
 
 export default function movie1 () {
-  const m = new Movie(1, 1, 9)
+  const m = new Movie('movie1', 1, 1, 9)
   let s = m.lastScene()
 
   const spacing = 0.5

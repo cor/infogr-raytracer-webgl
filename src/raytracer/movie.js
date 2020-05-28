@@ -1,10 +1,12 @@
 import Scene from './scene'
 
 export default class Movie {
+  id
   scenes = [new Scene()]
   shaderSourceVars
 
-  constructor (lightCount, circleCount, rectangleCount) {
+  constructor (id, lightCount, circleCount, rectangleCount) {
+    this.id = id
     this.shaderSourceVars = {
       LIGHT_COUNT: lightCount,
       CIRCLE_COUNT: circleCount,
