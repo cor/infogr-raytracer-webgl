@@ -23,6 +23,11 @@ export default {
       movies: [movie0(), movie1()]
     }
   },
+
+  mounted () {
+    this.playMovie(this.movies[0])
+  },
+
   methods: {
     playMovie (movie) {
       if (this.frameId !== null) {
