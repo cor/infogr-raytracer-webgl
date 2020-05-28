@@ -13,7 +13,7 @@
 
     <div class="description">
       <p>
-        Above you will find two movies; which are actively ray traced withn a WebGL fragment shader. The tracer operates in two dimensions, shooting a ray at each pixel every single frame. WebGL is easily capable of performing this operation at 60fps, as opposed to traditional CPU implementations. Our CPU-based <a href="https://github.com/cor/infogr-raytracer">C# version</a>, from which we originally ported the core logic, runs at a mere 5fps. We've ported that shader to OpenGL, which supports a more modern shading language, in order to hit 60FPS.
+        Above you will find two movies; which are actively ray traced withn a WebGL fragment shader. The tracer operates in two dimensions, shooting a ray at each pixel every single frame. WebGL is easily capable of performing this operation at 60FPS, as opposed to traditional CPU implementations. Our CPU-based <a href="https://github.com/cor/infogr-raytracer">C# version</a>, from which we originally ported the core logic, runs at a mere 5FPS. We've ported that shader to OpenGL, which supports a more modern shading language, in order to hit 60FPS.
       </p>
       <p>
         We wanted to run this project on the web, which is why we ported it to WebGL. However, due to WebGL's limited support for shaders, we wrote our own shader preprocessor in order to add variable-sized arrays to GLSL 1.0
