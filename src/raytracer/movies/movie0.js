@@ -1,7 +1,7 @@
 import Movie from '../movie'
 
 export default function movie0 () {
-  const m = new Movie('movie0', 4, 9, 1)
+  const m = new Movie('Circle Movie', 4, 9, 1)
 
   // Setup inital scene
   let s = m.lastScene()
