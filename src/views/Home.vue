@@ -123,6 +123,10 @@ export default {
     }
     &:not(.router-link-active) {
       border-bottom-color: $highlight-color;
+
+      &:hover {
+        border-color: $highlight-color;
+      }
     }
   }
 
@@ -130,9 +134,6 @@ export default {
     display: flex;
     width: 800px + 2 * $border-width;
     margin: 0 auto;
-  }
-  .tablink:hover {
-    background-color: #777;
   }
 
   canvas {
