@@ -92,7 +92,7 @@ struct RawRect {
     float angle;
 };
 
-#define RECTANGLE_COUNT 42//$RECTANGLE_COUNT//
+#define RECTANGLE_COUNT 42//$RECTANGLE_COUNT$//
 uniform RawRect rectangles[RECTANGLE_COUNT];
 Rectangle rects[RECTANGLE_COUNT];
 bool lineIntersects(Ray ray, vec2 lineStart, vec2 lineEnd) {
@@ -136,6 +136,13 @@ vec3 Trace(vec2 worldPoint)
 {
     vec3 colorAtPixel = vec3(0.0, 0.0, 0.0);
 
+    // Cache the rectangle transformations.
+    Rectangle rects[RECTANGLE_COUNT];
+    for (int i = 0; i < RECTANGLE_COUNT; i++) {
+        RawRect raw = rectangles[i];
+        rects[i] = newRectangle(raw.position, raw.width, raw.height, raw.angle);
+    }
+
     for (int i = 0; i < LIGHT_COUNT; i++) {
 
         vec2 vectorToLight = lights[i].position - worldPoint;
@@ -156,7 +163,7 @@ vec3 Trace(vec2 worldPoint)
         if (occluded) continue;
 
         for (int r = 0; r < RECTANGLE_COUNT; r++) {
-            Rectangle rect = rects[i];
+            Rectangle rect = rects[r];
             if (rectangleIntersect(ray, rect)) {
                 occluded = true;
                 break;
@@ -177,10 +184,5 @@ vec3 Trace(vec2 worldPoint)
 
 
 void main() {
-    for (int r = 0; r < RECTANGLE_COUNT; r++) {
-        RawRect raw = rectangles[r];
-        rects[r] = newRectangle(raw.position, raw.width, raw.height, raw.angle);
-    }
-
     gl_FragColor = vec4(Trace(ToWorldSpace(screenPosition)), 1.0);
 }

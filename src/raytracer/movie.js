@@ -7,7 +7,8 @@ export default class Movie {
   constructor (lightCount, circleCount, rectangleCount) {
     this.shaderSourceVars = {
       LIGHT_COUNT: lightCount,
-      CIRCLE_COUNT: circleCount
+      CIRCLE_COUNT: circleCount,
+      RECTANGLE_COUNT: rectangleCount
     }
 
     for (let i = 1; i < lightCount; i++) {
