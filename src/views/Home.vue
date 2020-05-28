@@ -10,6 +10,18 @@
       >{{movie.id}}</router-link>
     </div>
     <canvas id="glCanvas" width="800" height="800"></canvas>
+
+    <div class="description">
+      <p>
+        Above you will find two movies; which are actively ray traced withn a WebGL fragment shader. The tracer operates in two dimensions, shooting a ray at each pixel every single frame. WebGL is easily capable of performing this operation at 60fps, as opposed to traditional CPU implementations. Our CPU-based <a href="https://github.com/cor/infogr-raytracer">C# version</a>, from which we originally ported the core logic, runs at a mere 5fps. We've ported that shader to OpenGL, which supports a more modern shading language, in order to hit 60FPS.
+      </p>
+      <p>
+        We wanted to run this project on the web, which is why we ported it to WebGL. However, due to WebGL's limited support for shaders, we wrote our own shader preprocessor in order to add variable-sized arrays to GLSL 1.0
+      </p>
+      <p>
+        The movie consists of a set of static scenes, which are interpolated to generate fluid motion.
+      </p>
+    </div>
   </div>
 </template>
 
@@ -79,7 +91,7 @@ export default {
   $gray: #111;
   $dark-gray: #222;
   $border-width: 4px;
-  $highlight-color: #DFCFBE;
+  $highlight-color: #806f69;
 
   .home {
     text-align: center;
@@ -102,7 +114,7 @@ export default {
   .tablink {
     border-radius: 16px 16px 0 0;
     background-color: $gray;
-    color: $highlight-color;
+    color: inherit;
     text-decoration: none;
     font-weight: bold;
     float: left;
@@ -113,7 +125,6 @@ export default {
     font-size: 17px;
     /*width: 400px;*/
     flex: 1;
-
     border: solid $dark-gray;
     border-width: $border-width;
 
@@ -139,6 +150,18 @@ export default {
   canvas {
     border: solid $highlight-color;
     border-width: 0 $border-width $border-width $border-width;
+  }
+
+  .description {
+    width: 800px;
+    text-align: left;
+    margin: 0 auto;
+    font-weight: bold;
+
+    a {
+      color: inherit;
+      font-weight: bolder;
+    }
   }
 
 </style>
